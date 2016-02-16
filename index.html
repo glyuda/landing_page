@@ -19,7 +19,8 @@
         var htmlEl = document.getElementsByTagName('html')[0];
         htmlEl.className = htmlEl.className.replace(/\bno-js\b/, 'has-js');
     </script>
-
+<!--подключение всех css-->
+    <link rel="stylesheet" href="css/vendors/swiper.min.css"> <!--все сторонние библиотеки подключаем перед нашей, чтобы мы могли их перебивать-->
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
@@ -52,12 +53,21 @@
         </nav>
     </div>
 
+    <main class="page-content">
+<!--First slider-->
+        <div class="slider">
+
+        </div>
+    </main><!-- / .page-content -->
+
     <div class="is-no-js">
         <div class="base-container">
             <p class="message">JavaScript appears to be disabled. If possible, we recommend enabling JavaScript for an improved browsing experience.</p>
         </div>
     </div>
 
+<!--подключение всех файлов с javascript-->
+    <script defer src="js/vendors/swiper.min.js"></script> <!--все сторонние библиотеки подключаем перед нашей, чтобы мы могли их перебивать и использовать-->
     <script src="js/base.js"></script>
 </body>
 </html>
