@@ -1,7 +1,217 @@
 .slider {
-  height: 577px;
   background: #19b4c6; /* Old browsers */
   background: -moz-linear-gradient(-45deg, #19b4c6 0%, #078aa4 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(-45deg, #19b4c6 0%,#078aa4 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(135deg, #19b4c6 0%,#078aa4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.swiper-slide {
+  height: 577px;
+
+  transition: height ease 350ms,
+              width ease 300ms;
+
+  color: #fff;
+
+  @media all and (min-width: 979px) and (max-width: 1023px) {
+    height: 549px;
+  }
+  @media all and (min-width: 640px) and (max-width: 980px) {
+    height: 348px;
+  }
+  @media all and (min-width: 320px) and (max-width: 639px) {
+    height: 174px;
+  }
+}
+
+.slide-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 700px;
+}
+
+.slide-title {
+  margin: 0 0 47px;
+  font-size: 60px;
+  line-height: 65px;
+
+  @media all and (min-width: 979px) and (max-width: 1023px) {
+    margin-bottom: 37px;
+    font-size: 56px;
+    line-height: 61px;
+  }
+  @media all and (min-width: 640px) and (max-width: 980px) {
+    margin-bottom: 27px;
+    font-size: 32px;
+    line-height: 37px;
+  }
+  @media all and (min-width: 320px) and (max-width: 639px) {
+    margin-bottom: 17px;
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+
+.slide-link {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 34px;
+  line-height: 1;
+
+  background: url('../img/icons/icon_arrow.png') no-repeat scroll 100% 50%;
+
+  @media all and (min-width: 979px) and (max-width: 1023px) {
+    font-size: 28px;
+    background-size: 12px auto;
+  }
+  @media all and (min-width: 640px) and (max-width: 980px) {
+    font-size: 20px;
+    background-size: 10px auto;
+  }
+  @media all and (min-width: 320px) and (max-width: 639px) {
+    font-size: 18px;
+    background-size: 8px auto;
+  }
+}
+
+.cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.text-block {
+  display: table;
+  width: 100%;
+  padding-left: 84px;
+  max-width: 100%;
+  table-layout: fixed;
+  min-height: 245px;
+  box-sizing: border-box;
+
+  background: #27212c;
+
+  color: #9282a0;
+  font-size: 30px;
+  line-height: 1.2;
+
+  @media all and (min-width: 979px) and (max-width: 1023px) {
+    font-size: 28px;
+    padding-left: 80px;
+    min-height: 234px;
+  }
+  @media all and (min-width: 640px) and (max-width: 980px) {
+    font-size: 24px;
+    padding-left: 44px;
+    min-height: 151px;
+  }
+  @media all and (min-width: 320px) and (max-width: 639px) {
+    font-size: 20px;
+    padding-left: 24px;
+    min-height: 77px;
+  }
+
+  .text {
+    margin: 0;
+  }
+}
+
+.link-container {
+  width: 245px;
+  text-align: center;
+
+  color: #fff;
+  font-size: 50px;
+  line-height: 1;
+
+  background: #bc3183;
+  transition: width ease 350ms;
+
+  @media all and (min-width: 979px) and (max-width: 1023px) {
+    width: 234px;
+    font-size: 46px;
+  }
+  @media all and (min-width: 640px) and (max-width: 980px) {
+    width: 151px;
+    font-size: 40px;
+  }
+  @media all and (min-width: 320px) and (max-width: 639px) {
+    width: 77px;
+    font-size: 30px;
+  }
+}
+
+.link {
+  color: inherit;
+  font-family: 'Quicksand', sans-serif;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.gallery {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
+
+  @media all and (max-width: 640px) {
+    display: block;
+  }
+
+  &-item {
+    width: 33, 3%;
+    text-align: center;
+
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+
+    @media all and (max-width: 640px) {
+      width: auto;
+      display: block;
+
+      font-size: 60px;
+    }
+
+    @media all and (min-width: 320px) and (max-width: 479px) {
+      font-size: 60px;
+    }
+
+    display: table-cell;
+    background: #5b0fa1;
+  }
+
+  &-image {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+  .text-item {
+    .link {
+      line-height: 1.2;
+    }
+
+    @media all and (max-width: 640px) {
+      width: auto;
+      height: 490px;
+      line-height: 490px;
+      display: block;
+
+      font-size: 60px;
+    }
+
+    @media all and (min-width: 320px) and (max-width: 479px) {
+      height: 278px;
+      line-height: 278px;
+    }
+  }
 }
