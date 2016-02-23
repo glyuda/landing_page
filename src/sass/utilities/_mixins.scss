@@ -1,0 +1,306 @@
+/******* MIXINS *******/
+
+// TODO: Make a mixin
+
+/*@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi){
+
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 1.3), (min-resolution: 124.8dpi){
+
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){
+
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){
+
+}*/
+
+
+// Layout
+@mixin absoluteCenter($horizontal: false, $vertical: false) {
+    margin: auto;
+    position: absolute;
+
+    @if $horizontal {
+        left: 0;
+        right: 0;
+    }
+
+    @if $vertical {
+        top: 0;
+        bottom: 0;
+    }
+}
+
+@mixin translate($tX: false, $tY: false) {
+    $vendors: "-webkit-", "-moz-", "-ms-";
+
+    @if not ($tX == false) and (not ($tY == false)) {
+        @each $vendor in $vendors {
+            #{$vendor}transform: translate($tX, $tY);
+        }
+        transform: translate($tX, $tY);
+    } @else if $tX and ($tY == false) {
+        @each $vendor in $vendors {
+            #{$vendor}transform: translateX($tX);
+        }
+        transform: translateX($tX);
+    } @else if $tY and ($tX == false) {
+        @each $vendor in $vendors {
+            #{$vendor}transform: translateY($tY);
+        }
+        transform: translateY($tY);
+    }
+}
+
+@mixin rotate($degree: 0deg) {
+    $vendors: "-webkit-", "-moz-", "-ms-";
+    @each $vendor in $vendors {
+        #{$vendor}transform: rotate($degree);
+    }
+    transform: rotate($degree);
+}
+
+@mixin boxSizing($type: border-box) {
+    $vendors: "-webkit-", "-moz-";
+
+    @each $vendor in $vendors {
+        #{$vendor}box-sizing: $type;
+    }
+    box-sizing: $type;
+}
+
+// Decor
+@mixin setSelection($BG: none, $Color: inherit, $Border: none, $Outline: none) {
+    $vendors: "-moz-", "-webkit-";
+
+    @each $vendor in $vendors {
+        ::#{$vendor}selection {
+            background: $BG;
+            color: $Color;
+            border: $Border;
+            outline: $Outline;
+        }
+    }
+    ::selection {
+        background: $BG;
+        color: $Color;
+        border: $Border;
+        outline: $Outline;
+    }
+}
+
+@mixin userSelect {
+    $vendors: "-webkit-", "-moz-", "-ms-";
+
+    @each $vendor in $vendors {
+        #{$vendor}user-select: none;
+    }
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+@mixin arrowTop($right, $bottom, $left, $color) {
+    width: 0;
+    height: 0;
+    border-right: $right solid transparent;
+    border-bottom: $bottom solid $color;
+    border-left: $left solid transparent;
+}
+
+@mixin arrowRight($top, $bottom, $left, $color) {
+    width: 0;
+    height: 0;
+    border-top: $top solid transparent;
+    border-bottom: $bottom solid transparent;
+    border-left: $left solid $color;
+}
+
+@mixin arrowBottom($top, $right, $left, $color) {
+    width: 0;
+    height: 0;
+    border-top: $top solid $color;
+    border-right: $right solid transparent;
+    border-left: $left solid transparent;
+}
+
+@mixin arrowLeft($top, $right, $bottom, $color) {
+    width: 0;
+    height: 0;
+    border-top: $top solid transparent;
+    border-right: $right solid $color;
+    border-bottom: $bottom solid transparent;
+}
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin inlineFlexbox {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex: $values;
+    -webkit-flex: $values;
+    -ms-flex: $values;
+    flex: $values;
+}
+
+@mixin flexFlow($values) {
+    -moz-flex-flow: $values;
+    -webkit-flex-flow: $values;
+    -ms-flex-flow: $values;
+    flex-flow: $values;
+}
+
+@mixin flexDirection($direction) {
+    -moz-flex-direction: $direction;
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
+}
+
+@mixin justifyContent($type) {
+    -moz-justify-content: $type;
+    -webkit-justify-content: $type;
+
+    @if ($type == space-between ) {
+        -ms-flex-pack: justify;
+    } @else if($type == space-around){
+        -ms-flex-pack: distribute;
+    } @else if($type == flex-start) {
+        -ms-flex-pack: start;
+    } @else if($type == flex-end) {
+        -ms-flex-pack: end;
+    } @else if($type == center) {
+        -ms-flex-pack: $type;
+    }
+
+    justify-content: $type;
+}
+
+@mixin alignItems($type) {
+    -webkit-align-items: $type;
+
+    @if($type == flex-start){
+        -ms-flex-align: start;
+    } @else if($type == flex-end){
+        -ms-flex-align: end;
+    } @else if( ($type == center) or ($type == baseline) or ($type == stretch) ){
+        -ms-flex-align: $type;
+    }
+
+    align-items: $type;
+}
+
+@mixin alignContent($type) {
+    -webkit-align-content: $type;
+
+    @if($type == space-between){
+        -ms-flex-line-pack: justify;
+    } @else if($type == space-around){
+        -ms-flex-line-pack: distribute;
+    } @else if($type == flex-start){
+        -ms-flex-line-pack: start;
+    } @else if($type == flex-end){
+        -ms-flex-line-pack: end;
+    } @else if( ($type == center) or ($type == stretch) ){
+        -ms-flex-line-pack: $type;
+    }
+
+    align-content: $type;
+}
+
+@mixin alignSelf($type) {
+    -webkit-align-self: $type;
+
+    @if($type == flex-start){
+        -ms-flex-item-align: start;
+    } @else if($type == flex-end) {
+        -ms-flex-item-align: end;
+    } @else if( ($type == auto) or ($type == center) or ($type == baseline) or ($type == stretch) ){
+        -ms-flex-item-align: $type;
+    }
+
+    align-self: $type;
+}
+
+@mixin order($value) {
+    -webkit-box-ordinal-group: $value;
+    -webkit-order: $value;
+    -moz-box-ordinal-group: $value;
+    -ms-flex-order: $value;
+    order: $value;
+}
+
+// Forms
+@mixin placeholder($color: #a0a0a0, $font: Arial) {
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder {
+        color: $color;
+        font-family: $font;
+    }
+
+    &:-moz-placeholder,
+    &::-moz-placeholder {
+        opacity: 1;
+    }
+}
+
+// Text
+@mixin trimString {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//Animation
+@mixin animation ($animation, $duration, $count, $function) {
+  -webkit-animation-name: $animation;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-iteration-count: $count;
+  -webkit-animation-timing-function: $function;
+
+  -moz-animation-name: $animation;
+  -moz-animation-duration: $duration;
+  -moz-animation-iteration-count: $count;
+  -moz-animation-timing-function: $function;
+
+  -o-animation-name: $animation;
+  -o-animation-duration: $duration;
+  -o-animation-iteration-count: $count;
+  -o-animation-timing-function: $function;
+
+  animation-name: $animation;
+  animation-duration: $duration;
+  animation-iteration-count: $count;
+  animation-timing-function: $function;
+}
+
+//Linear gradient
+@mixin  linear-gradient($deg, $point-start, $point-end){
+    background: -webkit-linear-gradient($deg, $point-start, $point-end);
+    background: -moz-linear-gradient($deg, $point-start, $point-end);
+    background: -ms-linear-gradient($deg, $point-start, $point-end);
+    background: linear-gradient(0, $point-start, $point-end);
+}
+
+/******* // MIXINS *******/
